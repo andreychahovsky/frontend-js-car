@@ -14,6 +14,11 @@ module.exports = {
 	// methods
 	put: function() {
 		var currentSpeed;
+		if (this.passengers[0] !== true) {
+			this.passengers.push(true);
+			this.drive(this.defaultSpeed);
+			return;
+		} 
 		if (this.passengers.length < this.seats) {
 			currentSpeed = this.speed;
 			this.drive(0);
@@ -21,13 +26,14 @@ module.exports = {
 			this.drive(currentSpeed);
 		}
 		else {
-			var fatalError = new Error('Fatal error');
-			try {
-				// throw fatalError;
-			}
-			catch (fatalError) {
-				console.error('So many passengers!');
-			}
+			throw new Error('So many passengers!')
+			// var fatalError = new Error('Fatal error');
+			// try {
+			// 	// throw fatalError;
+			// }
+			// catch (fatalError) {
+			// 	console.error('So many passengers!');
+			// }
 		}
 	},
 
@@ -35,7 +41,7 @@ module.exports = {
 		var currentSpeed;
 		if (this.passengers.length > 0) {
 			currentSpeed = this.speed;
-			this.speed = 0;
+			this.drive(0);
 			this.passengers.splice(-1,1);
 			this.drive(currentSpeed);
 		}
@@ -56,6 +62,7 @@ module.exports = {
 			// console.warn("Check your speed!");
 		}
 		if (newSpeed === 0) {
+			this.speed = 0;
 			// console.log("The car was stopped.");
 			return;
 		}
