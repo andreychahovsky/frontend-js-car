@@ -25,16 +25,6 @@ module.exports = {
 			this.passengers.push(true);
 			this.drive(currentSpeed);
 		}
-		else {
-			throw new Error('So many passengers!')
-			// var fatalError = new Error('Fatal error');
-			// try {
-			// 	// throw fatalError;
-			// }
-			// catch (fatalError) {
-			// 	console.error('So many passengers!');
-			// }
-		}
 	},
 
 	land: function() {
@@ -45,50 +35,18 @@ module.exports = {
 			this.passengers.splice(-1,1);
 			this.drive(currentSpeed);
 		}
-		else {
-			var fatalError = new Error('Fatal error');
-			try {
-				// throw fatalError;
-			}
-			catch (fatalError) {
-				console.error('There are no passengers!');
-			}
-		}
 	},
 
 	drive: function (newSpeed) {
 		if  (newSpeed > this.maxSpeed) {
 			newSpeed = this.maxSpeed;
-			// console.warn("Check your speed!");
 		}
 		if (newSpeed === 0) {
 			this.speed = 0;
-			// console.log("The car was stopped.");
 			return;
 		}
 		if ((this.passengers[0] === true) && (newSpeed > 0)){
 			this.speed = newSpeed;
-		}
-		else {
-			if(this.passengers[0] !== true) {
-				var fatalError = new Error('Fatal error');
-				this.speed = 0;
-				try {
-					// throw fatalError;
-				}
-				catch (fatalError) {
-					console.error('There are no driver!');
-				}
-			}
-			else {
-				var fatalError = new Error('Fatal error');
-				try {
-					// throw fatalError;
-				}
-				catch (fatalError) {
-					console.error('Some problems with speed!');
-				}
-			}
 		}
 	}
 
